@@ -10,9 +10,10 @@ class App extends Component {
               <Navbar dark color="primary">
               <div className="container">
                   <NavbarBrand href="/">NuCamp</NavbarBrand>
-                  <Directory />
+                  
               </div>
               </Navbar>
+              <Directory />
           </div>
       );
   }
