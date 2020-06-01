@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import CampsiteInfo from './CampsiteInfoComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Home from './HomeComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+
 import Directory from './DirectoryComponent';
-import {CAMPSITES} from '../shared/campsites';
+import { CAMPSITES } from '../shared/campsites';
 
 class Main extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {campsites:CAMPSITES,
-    selectedCampsite: null};
+    this.state = {
+      campsites: CAMPSITES,
+    };
   }
 
-  onCampsiteSelect(campsiteId) {
-    this.setState({ selectedCampsite: campsiteId });
-}
+
   render() {
+    const HomePage = () => {
       return (
-          <div className="App">
-              <Navbar dark color="primary">
-              <div className="container">
-                  <NavbarBrand href="/">NuCamp</NavbarBrand>
-                  
-              </div>
-              </Navbar>
-              <Directory campsites={this.state.campsites} onClick = {campsiteId => this.onCampsiteSelect(campsiteId)}/>
-              <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
-          </div>
+        <Home />
       );
+    }
+    return (
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route path='/home' component={HomePage} />
+          <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
+          <Redirect to='/home' />
+        </Switch>
+        <Footer />
+      </div>
+    );
   }
 }
 
 
-export default Main ;
+export default Main;
