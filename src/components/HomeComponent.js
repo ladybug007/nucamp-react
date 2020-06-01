@@ -1,33 +1,35 @@
 import React from 'react';
 import { Card, CardBody, CardText, CardTitle, CardImg } from 'reactstrap';
 
-function RenderCard({item}){
+function RenderCard({ item }) {
 
-    return(
-    <Card>
-        <CardImg src= {item.image} alt={item.name}/>
-        <CardBody>
-            <CardTitle>{item.name}</CardTitle>
-            <CardText>{item.description}</CardText>
-        </CardBody>
-    </Card>
+    return (
+        <Card>
+
+            <CardImg src={item.image} alt={item.name} />
+            <CardBody>
+                <CardTitle>{item.name}</CardTitle>
+                <CardText>{item.description}</CardText>
+            </CardBody>
+        </Card>
+
     );
 }
 
 
 
-function Home(props){
-    return(
+function Home(props) {
+    return (
         <div className='container'>
-            <div className ='row'>
+            <div className='row'>
                 <div className='col-md m-1'>
-                    <RenderCard item = {props.campsite}/>
+                    <RenderCard item={props.campsite} />
                 </div>
                 <div className='col-md m-1'>
-                    <RenderCard item = {props.promotion}/>
+                    <RenderCard item={props.promotion} />
                 </div>
                 <div className='col-md m-1'>
-                    <RenderCard item = {props.partner}/>
+                    <RenderCard item={props.partner} />
                 </div>
             </div>
         </div>
