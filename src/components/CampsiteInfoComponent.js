@@ -19,7 +19,7 @@ import {Link} from 'react-router-dom';
     }
 
     function RenderComments({comments}) {
-        if (comments) {
+        if ({comments}) {
             return (
                 <div className='col-md-5 m-1'>
                     <h4>Comments</h4>
