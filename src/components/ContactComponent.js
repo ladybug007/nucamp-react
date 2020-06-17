@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Label, Input, Col, Row } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button,Col,Row, Label} from 'reactstrap';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
@@ -101,8 +101,8 @@ class Contact extends Component {
                                             maxLength: maxLength(15),
                                             minLength: minLength(2),
 
-                                        }}
-                                    />
+                                        }} />
+                                    
                                     <Errors
                                         model='.firstName'
                                         className='text-danger'
