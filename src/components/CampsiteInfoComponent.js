@@ -21,7 +21,7 @@ function RenderCampsite({ campsite }) {
     );
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment,campsiteId  }) {
     if ({ comments }) {
         return (
             <div>
@@ -31,7 +31,7 @@ function RenderComments({ comments }) {
                         -- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}</div>)}
 
                 </div>
-                <CommentForm />
+                <CommentForm campsiteId={campsiteId} addComment={addComment}/>
             </div>
 
 
@@ -53,7 +53,7 @@ function CampsiteInfo(props) {
                 </div>
                 <div className='row'>
                     <RenderCampsite campsite={props.campsite} />
-                    <RenderComments comments={props.comments} />
+                    <RenderComments comments={props.comments} addComment={props.addComment} campsiteId={props.campsite.id}/>
                 </div>
             </div>
         );
@@ -84,9 +84,11 @@ class CommentForm extends Component {
     toggleModal() {
         this.setState({ isModalOpen: !this.state.isModalOpen });
     }
-    handleSubmit(value) {
-        console.log('Current state is' + JSON.stringify(value));
-        alert('Current state is ' + JSON.stringify(value));
+    handleSubmit(values) {
+        /*console.log('Current state is' + JSON.stringify(value));
+        alert('Current state is ' + JSON.stringify(value));*/
+        this.toggleModal();
+        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
 
     }
 
@@ -118,7 +120,7 @@ class CommentForm extends Component {
                             <Row className='form-group'>
                                 <Label htmlFor="yourName" md={10}>Your Name</Label>
                                 <Col md={10}>
-                                    <Control.text model='.yourName' id="yourName" name="yourName"
+                                    <Control.text model='.author' id="yourName" name="yourName"
                                         placeholder="Your Name" className='form-control' validators={{
                                             required,
                                             maxLength: maxLength(15),
@@ -127,7 +129,7 @@ class CommentForm extends Component {
                                         }} />
 
                                     <Errors
-                                        model='.yourName'
+                                        model='.author'
                                         className='text-danger'
                                         show='touched'
                                         component='div'
@@ -142,7 +144,7 @@ class CommentForm extends Component {
                             <Row className='form-group'>
                                 <Label htmlFor="feedback" md={10}>Comments</Label>
                                 <Col md={10}>
-                                    <Control.textarea model='.feedback' id="feedback" name="feedback"
+                                    <Control.textarea model='.text' id="feedback" name="feedback"
                                         rows="5" className='form-control' />
                                 </Col>
                             </Row>
