@@ -1,9 +1,8 @@
 import {createStore, combineReducers} from 'redux';
-import {Campsites} from './campsites';
+import {Campsites} from './campsite';
 import {Comments} from './comments';
 import {Partners} from './partners';
 import {Promotions} from './promotions';
-import {Reducer, initialState} from './Reducer';
 
 export const ConfigureStore = () =>{
     const store = createStore(
