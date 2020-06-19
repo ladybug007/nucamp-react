@@ -9,7 +9,7 @@ import About from './AboutComponent';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import {actions} from 'react-redux-form';
-import {addComment, fetchCampsites,fetchComments, fetchPromotions} from '../redux/ActionCreators';
+import {postComment, fetchCampsites,fetchComments, fetchPromotions} from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
   return{
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  addComment : (campsiteId,rating, author, text) => addComment(campsiteId,rating, author, text),
+  postComment : (campsiteId,rating, author, text) => postComment(campsiteId,rating, author, text),
   fetchCampsites: () => (fetchCampsites()),
   resetFeedbackForm: () => (actions.reset('feedbackForm')),
   fetchComments: () => (fetchComments()),
@@ -56,7 +56,7 @@ class Main extends Component {
         isLoading = {this.props.campsites.isLoading}
         errMess = {this.props.campsites.errMess}
         comments = {this.props.comments.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
-        addComment = {this.props.addComment} 
+        postComment = {this.props.postComment} 
         commentsErrMess = {this.props.comments.errMess}
         />
       );
