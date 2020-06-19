@@ -10,6 +10,8 @@ import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import {actions} from 'react-redux-form';
 import {postComment, fetchCampsites,fetchComments, fetchPromotions} from '../redux/ActionCreators';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
+
 
 const mapStateToProps = state => {
   return{
@@ -64,6 +66,8 @@ class Main extends Component {
     return (
       <div className="App">
         <Header />
+        <TransitionGroup>
+          <CSSTransition key={this.props.location.key} classNames='page' timeout={300}>
         <Switch>
           <Route path='/home' component={HomePage} />
           <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
@@ -72,6 +76,8 @@ class Main extends Component {
           <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm}/>}/>
           <Redirect to='/home' />
         </Switch>
+        </CSSTransition>
+        </TransitionGroup>
         <Footer />
       </div>
     );
